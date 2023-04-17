@@ -70,5 +70,23 @@ namespace WebApplication1.Controllers
             }
             return result;
         }
+
+        [HttpGet("[action]")]
+        public string FindLostSymbols(string text)
+        {
+            string alfavit = "abcdefghijklmnopqrstuvwxyz";
+            char[] chars = text.ToCharArray();
+            int firstIndex = alfavit.IndexOf(chars[0]);
+            int lastIndex = alfavit.LastIndexOf(chars[chars.Length-1]);
+            string partOfRow = "";
+            for(int i =firstIndex;i<lastIndex;i++)
+            {
+                if (!text.Contains(alfavit[i]))
+                {
+                    partOfRow+= alfavit[i];
+                }
+            }           
+            return partOfRow;
+        }
     }
 }
