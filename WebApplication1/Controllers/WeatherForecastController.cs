@@ -54,5 +54,21 @@ namespace WebApplication1.Controllers
         {
             return text.ToUpper();
         }
+
+        [HttpGet("[action]")]
+
+        public string FindSymbols(string text)
+        {
+            string alfavit = "abcdefghijklmnopqrstuvwxyz";
+            string result = "";
+            foreach(char a in alfavit)
+            {
+                if(!text.Contains(a))
+                {
+                    result += a;
+                }
+            }
+            return result;
+        }
     }
 }
