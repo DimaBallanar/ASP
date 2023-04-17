@@ -31,5 +31,28 @@ namespace WebApplication1.Controllers
             })
             .ToArray();
         }
+        [HttpGet("{id:int}")]
+        public WeatherForecast GetWeatherForecast(int id)
+        {
+            return new WeatherForecast
+            {
+                Date = DateTime.Now.AddDays(id),
+                TemperatureC = Random.Shared.Next(-20, 55),
+                Summary = Summaries[Random.Shared.Next(Summaries.Length)]
+            };
+        }
+
+        [HttpGet("[action]")]
+        public int SumNumbers(int num1, int num2)
+        {
+            return num1 + num2;
+        }
+
+        [HttpGet("[action]")]
+
+        public string GetSymbols(string text)
+        {
+            return text.ToUpper();
+        }
     }
 }
