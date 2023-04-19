@@ -70,6 +70,20 @@ namespace WebApplication1.Controllers
 
         }
 
+        //https://localhost:7283/api/Rest/UpdateByIndex/2
+        [HttpDelete("[action]/{index}")]
+        public IActionResult UpdateByIndex([FromBody] ArrayItemModel model, int index)
+        {
+            if (model.Item == null) { return BadRequest(); }
+            try
+            {
+                ArrayService.Array[index] = model.Item ;
+                return Ok(GetArray());
+            }
+            catch (ArgumentOutOfRangeException) { return BadRequest(); }
+
+        }
+
     }
 
 }
