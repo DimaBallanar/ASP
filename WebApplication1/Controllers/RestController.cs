@@ -35,9 +35,16 @@ namespace WebApplication1.Controllers
         }
 
         [HttpGet("[action]/{index}")]
-        public string GetArray(int index)
+        public IActionResult GetArray(int index)
         {
-            return ArrayService.Array[index-1];
+            try
+            {
+                return Ok(ArrayService.Array[index - 1]);
+            }
+            catch (IndexOutOfRangeException)
+            {
+                return BadRequest();
+            }
         }
 
 
