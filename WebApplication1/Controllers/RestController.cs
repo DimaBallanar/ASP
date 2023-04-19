@@ -57,9 +57,16 @@ namespace WebApplication1.Controllers
         }
 
 
+        //https://localhost:7283/api/Rest/DeleteByIndex/2
+        [HttpDelete("[action]/{index}")]
         public IActionResult DeleteByIndex(int index)
         {
-
+            try
+            {
+                ArrayService.Array.RemoveAt(index);
+                return Ok(GetArray());
+            }
+            catch (ArgumentOutOfRangeException) { return BadRequest(); }
 
         }
 
