@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using WebApplication1.Models;
 using WebApplication1.Services;
 
 namespace WebApplication1.Controllers
@@ -29,7 +30,7 @@ namespace WebApplication1.Controllers
         //}
 
         [HttpGet("[action]")]
-        public string[] GetArray()
+        public List<string> GetArray()
         {
             return ArrayService.Array;
         }
@@ -47,6 +48,20 @@ namespace WebApplication1.Controllers
             }
         }
 
+        [HttpPost("[action]")]
+        public IActionResult PostItem(ArrayItemModel data)
+        {
+            if(data.Item==null) { return BadRequest(); }
+            ArrayService.Array.Add(data.Item);
+            return Ok(GetArray());
+        }
+
+
+        public IActionResult DeleteByIndex(int index)
+        {
+
+
+        }
 
     }
 
