@@ -36,5 +36,21 @@ namespace WebApplication1.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        // https://localhost:7283/api/Language/getall/react
+        [HttpPost("put/{id}")]
+        public async Task<IActionResult> Put(string id)
+        {
+            try
+            {
+                LanguageServices languageServices = new LanguageServices();
+                await languageServices.GetById(id);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }
