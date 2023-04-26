@@ -38,7 +38,7 @@ namespace WebApplication1.Controllers
             }
         }
 
-        // https://localhost:7283/api/Language/getall/react
+        // https://localhost:7283/api/Language/create/react
         [HttpPost("create")]
         public async Task<IActionResult> Create( Language data)
         {
@@ -54,7 +54,21 @@ namespace WebApplication1.Controllers
             }
         }
 
+        [HttpDelete("delete/{id}")]
+        public async Task<IActionResult> Delete(string id)
+        {
+            try
+            {
+                LanguageServices LangServ = new LanguageServices();
+                await LangServ.Delete(id);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
 
-        
+
     }
 }
