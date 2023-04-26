@@ -34,7 +34,7 @@ namespace WebApplication1.Repositories
             }
         }
 
-        public async Task WriteNew(List<Language> language)
+        public void  WriteNew(List<Language> language)
         {
             try
             {

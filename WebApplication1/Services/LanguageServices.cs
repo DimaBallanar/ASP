@@ -20,8 +20,13 @@ namespace WebApplication1.Services
         public async Task Create( Language lg)
         {
             var list = await new LanguageRepositories().GetAll();
-            list.FirstOrDefault(lg=> lg.Id == lg.Id);
-            if()
+           var item= list.FirstOrDefault(x=> x.Id.ToLower() == lg.Id.ToLower());
+            if(item!=null)
+            {
+                throw new Exception();
+            }
+            list.Add(lg);
+            new LanguageRepositories().WriteNew(list);
         }
 
     }

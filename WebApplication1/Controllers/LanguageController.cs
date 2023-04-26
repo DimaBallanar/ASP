@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using WebApplication1.Models;
 using WebApplication1.Services;
 
 namespace WebApplication1.Controllers
@@ -38,13 +39,13 @@ namespace WebApplication1.Controllers
         }
 
         // https://localhost:7283/api/Language/getall/react
-        [HttpPost("put/{id}")]
-        public async Task<IActionResult> Put(string id)
+        [HttpPost("create")]
+        public async Task<IActionResult> Create( Language data)
         {
             try
             {
-                LanguageServices languageServices = new LanguageServices();
-                await languageServices.GetById(id);
+                LanguageServices LangServ=new LanguageServices();
+                await LangServ.Create(data);
                 return Ok();
             }
             catch (Exception ex)
@@ -52,5 +53,8 @@ namespace WebApplication1.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+
+        
     }
 }
