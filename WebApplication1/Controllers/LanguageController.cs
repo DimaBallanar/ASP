@@ -54,6 +54,21 @@ namespace WebApplication1.Controllers
             }
         }
 
+        [HttpDelete("update/{id}")]
+        public async Task<IActionResult> Update(Language data)
+        {
+            try
+            {
+                LanguageServices LangServ = new LanguageServices();
+                await LangServ.Update(data);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
         [HttpDelete("delete/{id}")]
         public async Task<IActionResult> Delete(string id)
         {

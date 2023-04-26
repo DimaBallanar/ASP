@@ -28,6 +28,18 @@ namespace WebApplication1.Services
             list.Add(lg);
             new LanguageRepositories().WriteNew(list);
         }
+
+        public async Task Update(Language lg)
+        {
+            var list = await new LanguageRepositories().GetAll();
+            var item = list.FindIndex(x => x.Id.ToLower() == lg.Id.ToLower());
+            if (item == null)
+            {
+                throw new Exception();
+            }
+            list[item] = lg;
+            new LanguageRepositories().WriteNew(list);
+        }
         public async Task Delete(string id)
         {
             var list = await new LanguageRepositories().GetAll();
